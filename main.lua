@@ -7,13 +7,13 @@ if not decompile then
 end
 
 
-local noobworkspace = game:GetService("Workspace"):GetDescendants()
-local noobreplicatedstorage = game:GetService("ReplicatedStorage"):GetDescendants()
-local noobreplicatedfirst = game:GetService("ReplicatedFirst"):GetDescendants()
-local noobstarterplayer = game:GetService("StarterPlayer").StarterPlayerScripts:GetDescendants()
-local nobostartercharacter = game:GetService("StarterPlayer").StarterCharacterScripts:GetDescendants()
-local noobstartergui = game:GetService("StarterGui"):GetDescendants()
-local noobnilinstances = getnilinstances()
+local noobworkspace = game:GetService("Workspace"):GetDescendants() or {}
+local noobreplicatedstorage = game:GetService("ReplicatedStorage"):GetDescendants() or {}
+local noobreplicatedfirst = game:GetService("ReplicatedFirst"):GetDescendants() or {}
+local noobstarterplayer = game:GetService("StarterPlayer").StarterPlayerScripts:GetDescendants() or {}
+local nobostartercharacter = game:GetService("StarterPlayer").StarterCharacterScripts:GetDescendants() or {}
+local noobstartergui = game:GetService("StarterGui"):GetDescendants() or {}
+local noobnilinstances = getnilinstances() or {}
 
 local DecompileStartTime = os.time()
 local ScriptsFailedToDecompile = 0

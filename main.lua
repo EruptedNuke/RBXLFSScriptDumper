@@ -28,7 +28,7 @@ makefolder(ScriptDumperDirFolderName)
 end
 
 local ServicesCrap = {
-["Nil_Instances"] = {DecompileState=false,Path=noobnilinstances},
+["Nil_Instances"] = {DecompileState=true,Path=noobnilinstances},
 ["StarterPlayerScripts"] = {DecompileState=true,Path=noobstarterplayer},
 ["StarterCharacterScripts"] = {DecompileState=true,Path=nobostartercharacter},
 ["ReplicatedStorage"] = {DecompileState=true,Path=noobreplicatedstorage},

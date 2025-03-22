@@ -85,5 +85,3 @@ print("Scripts failed to decompile : "..tostring(ScriptsFailedToDecompile))
 print("Scripts decompiled : "..tostring(ScriptsSuccesfullyDecompiled))
 
 
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/EruptedNuke/RBXLFSScriptDumper/refs/heads/main/main.lua"))()

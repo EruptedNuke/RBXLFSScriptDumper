@@ -35,13 +35,8 @@ local ServicesCrap = {
 ["StarterGui"] = {DecompileState=false,Path=noobstartergui}
 }
 
-FSScriptDumperLW.RegisterService = function(ServicesData)
-    for i,v in pairs(ServicesData) do 
-      ServicesCrap[v.ServiceName].DecompileState = v.Bool
-    end
-end 
 
-function DecompileScriptGrr(ScriptToDecompile)
+local function DecompileScriptGrr(ScriptToDecompile)
     local Success, ReturnedData
     local DecompiledOutput
     local ScriptByteCode
@@ -59,32 +54,40 @@ function DecompileScriptGrr(ScriptToDecompile)
     }
 end
 
-task.spawn(function()
-for i, v in pairs(ServicesCrap) do
-    if v.DecompileState == true then
-        makefolder(ScriptDumperDirFolderName .. "/" .. i)
-        for i2, v2 in pairs(v.Path) do
-            if v2:IsA("ModuleScript") or v2:IsA("LocalScript") then
-                local ScriptDecompiled = DecompileScriptGrr(v2)
-                if ScriptDecompiled.Success and ScriptDecompiled.Output~="Unknown Bytecode" then
-                    ScriptsSuccesfullyDecompiled = ScriptsSuccesfullyDecompiled+1
-                    writefile(ScriptDumperDirFolderName .. "/" .. i .. "/" .. v2.Name .. "_" .. tostring(i2) .. ".lua",ScriptDecompiled.Output)
-                else
-                    ScriptsFailedToDecompile = ScriptsFailedToDecompile + 1
+FSScriptDumperLW.RegisterService = function(ServicesData)
+    for i,v in pairs(ServicesData) do 
+      ServicesCrap[i].DecompileState = v.DecompileState
+    end
+end 
+
+FSScriptDumperLW.StartDumping = function()
+    task.spawn(function()
+        for i, v in pairs(ServicesCrap) do
+            if v.DecompileState == true then
+                makefolder(ScriptDumperDirFolderName .. "/" .. i)
+                for i2, v2 in pairs(v.Path) do
+                    if v2:IsA("ModuleScript") or v2:IsA("LocalScript") then
+                        local ScriptDecompiled = DecompileScriptGrr(v2)
+                        if ScriptDecompiled.Success and ScriptDecompiled.Output~="Unknown Bytecode" then
+                            ScriptsSuccesfullyDecompiled = ScriptsSuccesfullyDecompiled+1
+                            writefile(ScriptDumperDirFolderName .. "/" .. i .. "/" .. v2.Name .. "_" .. tostring(i2) .. ".lua",ScriptDecompiled.Output)
+                        else
+                            ScriptsFailedToDecompile = ScriptsFailedToDecompile + 1
+                        end
+                    end
                 end
             end
-        end
-    end
-  end
-
-  ScriptDumpingCompleted = true 
-end)
-
-repeat task.wait() until ScriptDumpingCompleted == true 
-
-local DecompileEndTimeStamp = os.time()-DecompileStartTime
-
-print("Decompiling Finished in : "..DecompileEndTimeStamp.." Seconds")
-print("Folder dir name: "..ScriptDumperDirFolderName)
-print("Scripts failed to decompile : "..tostring(ScriptsFailedToDecompile))
-print("Scripts decompiled : "..tostring(ScriptsSuccesfullyDecompiled))
+          end
+        
+          ScriptDumpingCompleted = true 
+        end)
+        
+        repeat task.wait() until ScriptDumpingCompleted == true 
+        
+        local DecompileEndTimeStamp = os.time()-DecompileStartTime
+        
+        print("Decompiling Finished in : "..DecompileEndTimeStamp.." Seconds")
+        print("Folder dir name: "..ScriptDumperDirFolderName)
+        print("Scripts failed to decompile : "..tostring(ScriptsFailedToDecompile))
+        print("Scripts decompiled : "..tostring(ScriptsSuccesfullyDecompiled))
+end 

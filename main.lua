@@ -6,7 +6,7 @@ local me = plrservice.LocalPlayer
 getgenv().FSScriptDumperLW = {}
 
 local noobworkspace = game:GetService("Workspace"):GetDescendants()
-local noobreplicatedstorage = game:GetService("ReplicatedStorage"):GetDescendants()
+local noobreplicatedstorage = game:GetService("ReplicatedStorage"):GetDescendants() 
 local noobreplicatedfirst = game:GetService("ReplicatedFirst"):GetDescendants()
 local noobstarterplayer = game:GetService("StarterPlayer").StarterPlayerScripts:GetDescendants()
 local nobostartercharacter = game:GetService("StarterPlayer").StarterCharacterScripts:GetDescendants()

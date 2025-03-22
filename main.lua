@@ -10,10 +10,18 @@ end
 local noobworkspace = game:GetService("Workspace"):GetDescendants()
 local noobreplicatedstorage = game:GetService("ReplicatedStorage"):GetDescendants()
 local noobreplicatedfirst = game:GetService("ReplicatedFirst"):GetDescendants()
-local noobstarterplayer = game:GetService("StarterPlayer").StarterPlayerScripts:GetDescendants()
-local nobostartercharacter = game:GetService("StarterPlayer").StarterCharacterScripts:GetDescendants()
+local noobstarterplayer = nil 
+local nobostartercharacter = nil
 local noobstartergui = game:GetService("StarterGui"):GetDescendants()
 local noobnilinstances = getnilinstances()
+
+if game:GetService("StarterPlayer"):FindFirstChild("StarterPlayerScripts")  then 
+    noobstarterplayer = game:GetService("StarterPlayer").StarterPlayerScripts:GetDescendants()
+end 
+
+if game:GetService("StarterPlayer"):FindFirstChild("StarterCharacterScripts")  then 
+    nobostartercharacter = game:GetService("StarterPlayer").StarterCharacterScripts:GetDescendants()
+end 
 
 local DecompileStartTime = os.time()
 local ScriptsFailedToDecompile = 0
@@ -56,7 +64,7 @@ end
 
 task.spawn(function()
 for i, v in pairs(ServicesCrap) do
-    if v.DecompileState == true then
+    if v.DecompileState == true and v.Parent then
         makefolder(ScriptDumperDirFolderName .. "/" .. i)
         for i2, v2 in pairs(v.Path) do
             if v2:IsA("ModuleScript") or v2:IsA("LocalScript") then
@@ -83,5 +91,3 @@ print("Decompiling Finished in : "..DecompileEndTimeStamp.." Seconds")
 print("Folder dir name: "..ScriptDumperDirFolderName)
 print("Scripts failed to decompile : "..tostring(ScriptsFailedToDecompile))
 print("Scripts decompiled : "..tostring(ScriptsSuccesfullyDecompiled))
-
-

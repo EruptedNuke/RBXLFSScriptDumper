@@ -1,3 +1,5 @@
+repeat task.wait() until game:GetService("StarterPlayer"):FindFirstChild("StarterPlayerScripts")
+
 local plrservice = game:GetService("Players")
 local me = plrservice.LocalPlayer
 

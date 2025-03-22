@@ -3,6 +3,7 @@ repeat task.wait() until game:GetService("StarterPlayer"):FindFirstChild("Starte
 local plrservice = game:GetService("Players")
 local me = plrservice.LocalPlayer
 
+getgenv().FSScriptDumperLW = {}
 
 local noobworkspace = game:GetService("Workspace"):GetDescendants()
 local noobreplicatedstorage = game:GetService("ReplicatedStorage"):GetDescendants()
@@ -24,14 +25,21 @@ if not isfolder(ScriptDumperDirFolderName) then
 makefolder(ScriptDumperDirFolderName)
 end
 
+
 local ServicesCrap = {
-["Nil_Instances"] = {DecompileState=true,Path=noobnilinstances},
-["StarterPlayerScripts"] = {DecompileState=true,Path=noobstarterplayer},
-["StarterCharacterScripts"] = {DecompileState=true,Path=nobostartercharacter},
-["ReplicatedStorage"] = {DecompileState=true,Path=noobreplicatedstorage},
-["ReplicatedFirst"] = {DecompileState=true,Path=noobreplicatedfirst},
-["StarterGui"] = {DecompileState=true,Path=noobstartergui}
+["Nil_Instances"] = {DecompileState=false,Path=noobnilinstances},
+["StarterPlayerScripts"] = {DecompileState=false,Path=noobstarterplayer},
+["StarterCharacterScripts"] = {DecompileState=false,Path=nobostartercharacter},
+["ReplicatedStorage"] = {DecompileState=false,Path=noobreplicatedstorage},
+["ReplicatedFirst"] = {DecompileState=false,Path=noobreplicatedfirst},
+["StarterGui"] = {DecompileState=false,Path=noobstartergui}
 }
+
+FSScriptDumperLW.RegisterService = function(ServicesData)
+    for i,v in pairs(ServicesData) do 
+      ServicesCrap[v.ServiceName].DecompileState = v.Bool
+    end
+end 
 
 function DecompileScriptGrr(ScriptToDecompile)
     local Success, ReturnedData

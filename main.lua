@@ -59,7 +59,6 @@ FSScriptDumperLW.RegisterService = function(ServicesData)
 end
 
 FSScriptDumperLW.StartDumping = function()
-    task.spawn(function()
         for i, v in pairs(ServicesCrap) do
             if v.DecompileState then
                 makefolder(ScriptDumperDirFolderName .. "/" .. i)
@@ -78,7 +77,6 @@ FSScriptDumperLW.StartDumping = function()
         end
 
         ScriptDumpingCompleted = true
-    end)
 
     repeat task.wait() until ScriptDumpingCompleted
 
@@ -89,3 +87,4 @@ FSScriptDumperLW.StartDumping = function()
     print("Scripts failed to decompile : " .. tostring(ScriptsFailedToDecompile))
     print("Scripts decompiled : " .. tostring(ScriptsSuccesfullyDecompiled))
 end
+

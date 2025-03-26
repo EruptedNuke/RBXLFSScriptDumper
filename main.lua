@@ -55,7 +55,7 @@ function DecompileScriptGrr(ScriptToDecompile)
             if ScriptByteCode then
                 DecompiledOutput = decompile(ScriptToDecompile)
             end
-        end)
+        end) 
     return {
         ["Success"] = Success,
         ["Output"] = DecompiledOutput or "Unknown Bytecode"

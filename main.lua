@@ -1,5 +1,7 @@
 local plrservice = game:GetService("Players")
 
+repeat task.wait() until plrservice.LocalPlayer and game:GetService("StarterPlayer"):FindFirstChild("StarterPlayerScripts") and game:GetService("StarterPlayer"):FindFirstChild("StarterCharacterScripts")
+
 local me = plrservice.LocalPlayer
 
 if not decompile then
@@ -67,8 +69,9 @@ end
 local function SafeDecompileScript(script, Category)
     local ScriptDecompiled = DecompileScriptGrr(script)
     if ScriptDecompiled.Success and ScriptDecompiled.Output ~= "Unknown Bytecode" then
-        ScriptsSuccesfullyDecompiled = ScriptsSuccesfullyDecompiled + 1
-        writefile(ScriptDumperDirFolderName .. "/" .. Category .. "/" .. script.Name .. "_" .. tostring(ScriptsSuccesfullyDecompiled) .. ".lua", ScriptDecompiled.Output)
+        ScriptsSuccesfullyDecompiled = ScriptsSuccesfullyDecompiled + 1 
+        local ScriptName = script.ClassName..tostring(ScriptsSuccesfullyDecompiled)
+        writefile(ScriptDumperDirFolderName .. "/" .. Category .. "/" .. ScriptName .. ".lua", ScriptDecompiled.Output)
     else
         ScriptsFailedToDecompile = ScriptsFailedToDecompile + 1
     end

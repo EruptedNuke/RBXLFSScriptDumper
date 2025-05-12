@@ -66,11 +66,11 @@ function DecompileScriptGrr(ScriptToDecompile)
     }
 end
 
-local function SafeDecompileScript(script, Category)
-    local ScriptDecompiled = DecompileScriptGrr(script)
+local function SafeDecompileScript(Script, Category)
+    local ScriptDecompiled = DecompileScriptGrr(Script)
     if ScriptDecompiled.Success and ScriptDecompiled.Output ~= "Unknown Bytecode" then
         ScriptsSuccesfullyDecompiled = ScriptsSuccesfullyDecompiled + 1 
-        local ScriptName = tostring(ScriptsSuccesfullyDecompiled)
+        local ScriptName = Script.Name..tostring(ScriptsSuccesfullyDecompiled)
         writefile(ScriptDumperDirFolderName .. "/" .. Category .. "/" .. ScriptName .. ".lua", ScriptDecompiled.Output)
     else
         ScriptsFailedToDecompile = ScriptsFailedToDecompile + 1
@@ -112,6 +112,3 @@ print("Decompiling Finished in : "..DecompileEndTimeStamp.." Seconds")
 print("Folder dir name: "..ScriptDumperDirFolderName)
 print("Scripts failed to decompile : "..tostring(ScriptsFailedToDecompile))
 print("Scripts decompiled : "..tostring(ScriptsSuccesfullyDecompiled))
-
-
-

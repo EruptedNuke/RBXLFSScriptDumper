@@ -41,7 +41,7 @@ if not isfolder(ScriptDumperDirFolderName) then
 end
 local ServicesCrap = {
     ["StarterPlayerScripts"]={DecompileState=true,Path=noobstarterplayer},
-    ["StarterCharacterScripts"]={DecompileState=true,Path=nobostartercharacter},
+    ["StarterCharacterScripts"]={DecompileState=true,Path=noobstartercharacter},
     ["ReplicatedStorage"]={DecompileState=true,Path=noobreplicatedstorage},
     ["ReplicatedFirst"]={DecompileState=true,Path=noobreplicatedfirst},
     ["StarterGui"]={DecompileState=true,Path=noobstartergui},
@@ -112,3 +112,6 @@ print("Decompiling Finished in : "..DecompileEndTimeStamp.." Seconds")
 print("Folder dir name: "..ScriptDumperDirFolderName)
 print("Scripts failed to decompile : "..tostring(ScriptsFailedToDecompile))
 print("Scripts decompiled : "..tostring(ScriptsSuccesfullyDecompiled))
+
+
+
